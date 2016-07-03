@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.5.0  -->
-<!-- 2016-06-28T20:50:57 -->
+<!-- 2016-07-03T11:32:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="danfe" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="14" rightMargin="16" topMargin="14" bottomMargin="14">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -590,14 +590,14 @@ $F{nota}.getInfo().getEmitente().getEndereco().getTeleFone().substring(2,6) + "-
 				<staticText>
 					<reportElement style="campoPequeno" x="228" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[BASE DE CALCULO DO ICMS SUBST.]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="campoPequeno" x="341" y="129" width="111" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO ICMS SUBST.]]></text>
 				</staticText>
@@ -716,7 +716,7 @@ $F{nota}.getInfo().getEmitente().getEndereco().getTeleFone().substring(2,6) + "-
 				<staticText>
 					<reportElement style="campoPequeno" x="2" y="153" width="92" height="6"/>
 					<textElement>
-						<font fontName="Courier New"/>
+						<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					</textElement>
 					<text><![CDATA[VALOR DO FRETE]]></text>
 				</staticText>
@@ -795,7 +795,7 @@ $F{nota}.getInfo().getEmitente().getEndereco().getTeleFone().substring(2,6) + "-
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Dest_UF}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getAvulsa().getUf()]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="dados" x="278" y="40" width="132" height="16"/>
@@ -823,7 +823,7 @@ $F{nota}.getInfo().getEmitente().getEndereco().getTeleFone().substring(2,6) + "-
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Dest_IE} != null ? $F{Dest_IE} : ""]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getDestinatario().getInscricaoEstadual() != null ? $F{nota}.getInfo().getDestinatario().getInscricaoEstadual() : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement style="dados" x="500" y="40" width="64" height="16" isRemoveLineWhenBlank="true"/>
@@ -837,9 +837,9 @@ $F{nota}.getInfo().getEmitente().getEndereco().getTeleFone().substring(2,6) + "-
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Dest_Telefone}.length() == 8 ? $F{Dest_Telefone}.substring(0,4) +
-"-" + $F{Dest_Telefone}.substring(4,8) : "(" + $F{Dest_Telefone}.substring(0,2) + ") " +
-$F{Dest_Telefone}.substring(2,6) + "-" + $F{Dest_Telefone}.substring(6,10)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getAvulsa().getFone().length() == 8 ? $F{nota}.getInfo().getAvulsa().getFone().substring(0,4) +
+"-" + $F{nota}.getInfo().getAvulsa().getFone().substring(4,8) : "(" + $F{nota}.getInfo().getAvulsa().getFone().substring(0,2) + ") " +
+$F{nota}.getInfo().getAvulsa().getFone().substring(2,6) + "-" + $F{nota}.getInfo().getAvulsa().getFone().substring(6,10)]]></textFieldExpression>
 				</textField>
 				<textField pattern="dd/MM/yyyy">
 					<reportElement style="dados" x="500" y="16" width="64" height="16"/>
@@ -883,77 +883,77 @@ $F{nota}.getInfo().getDestinatario().getCnpj().length().substring(8,12) + "-" + 
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorBase} == null ? 0.00 : Double.parseDouble($F{ValorBase}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getIcmsTotal().getBaseCalculoICMS() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getIcmsTotal().getBaseCalculoICMS()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" mode="Transparent" x="113" y="135" width="109" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="styled">
 						<font fontName="Courier New" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorICMS} == null ? 0.00 : Double.parseDouble($F{ValorICMS}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getIcmsTotal().getValorTotalICMS() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getIcmsTotal().getValorTotalICMS()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="454" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorProdutos} == null ? 0.00 : Double.parseDouble($F{ValorProdutos}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalDosProdutosServicos() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalDosProdutosServicos()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="228" y="135" width="109" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorBaseST} == null ? 0.00 : Double.parseDouble($F{ValorBaseST}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getBaseCalculoICMSST() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getBaseCalculoICMSST()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="284" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorOutro} == null ? 0.00 : Double.parseDouble($F{ValorOutro}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getOutrasDespesasAcessorias() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getOutrasDespesasAcessorias()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00">
 					<reportElement style="dados" x="472" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorNF} == null ? 0.00 : Double.parseDouble($F{ValorNF}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalNFe() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalNFe()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="378" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorIPI} == null ? 0.00 : Double.parseDouble($F{ValorIPI}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalIPI() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalIPI()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="96" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorSeguro} == null ? 0.00 : Double.parseDouble($F{ValorSeguro}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalSeguro() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalSeguro()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="2" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorFrete} == null ? 0.00 : Double.parseDouble($F{ValorFrete}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalFrete() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalFrete()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="190" y="159" width="90" height="16"/>
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{ValorDesconto} == null ? 0.00 : Double.parseDouble($F{ValorDesconto}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf($F{nota}.getInfo().getTotal().getValorTotalDesconto() == null ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalDesconto()))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="194" width="224" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Nome}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getRazaoSocial()]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="true">
 					<reportElement style="dados" x="460" y="194" width="104" height="17"/>
@@ -975,8 +975,8 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<textElement textAlignment="Center">
 						<font fontName="Courier New" size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Frete}.equals( "0" ) ? "0-EMITENTE" : $F{Frete}.equals( "1" ) ? "1-DESTINATARIO"
-: $F{Frete}.equals( "2" ) ? "2-TERCEIRO" : "9-SEM FRETE"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getModalidadeFrete().getCodigo().equals( "0" ) ? "0-EMITENTE" : $F{nota}.getInfo().getTransporte().getModalidadeFrete().getCodigo().equals( "1" ) ? "1-DESTINATARIO"
+: $F{nota}.getInfo().getTransporte().getModalidadeFrete().getCodigo().equals( "2" ) ? "2-TERCEIRO" : "9-SEM FRETE"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="460" y="217" width="104" height="16"/>
@@ -1039,28 +1039,28 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<textElement textAlignment="Right">
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{ValorST}) == 0.00 ? 0.00 : Double.parseDouble($F{ValorST}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalICMSST()) == 0.00 ? 0.00 : Double.parseDouble($F{nota}.getInfo().getTotal().getValorTotalICMSST()))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="432" y="194" width="26" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_PlacaUF}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVeiculo().getUf()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="364" y="194" width="66" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Placa}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[ota}.getInfo().getTransporte().getVeiculo().getPlacaVeiculo()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="296" y="194" width="66" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_ANTT}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVeiculo().getRegistroNacionalTransportadorCarga()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="153" y="242" width="73" height="16"/>
