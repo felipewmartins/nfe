@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.5.0  -->
-<!-- 2016-07-03T11:32:08 -->
+<!-- 2016-07-17T13:08:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="danfe" pageWidth="595" pageHeight="842" columnWidth="565" leftMargin="14" rightMargin="16" topMargin="14" bottomMargin="14">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -960,9 +960,9 @@ $F{nota}.getInfo().getDestinatario().getCnpj().length().substring(8,12) + "-" + 
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_CNPJ}.length() == 14 ? $F{Trans_CNPJ}.substring(0,2) + "." +
-$F{Trans_CNPJ}.substring(2,5) + "." + $F{Trans_CNPJ}.substring(5,8) + "/" +
-$F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Trans_CNPJ}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getCnpj().length() == 14 ? $F{nota}.getInfo().getTransporte().getTransportador().getCnpj().substring(0,2) + "." +
+$F{nota}.getInfo().getTransporte().getTransportador().getCnpj().substring(2,5) + "." + $F{nota}.getInfo().getTransporte().getTransportador().getCnpj().substring(5,8) + "/" +
+$F{nota}.getInfo().getTransporte().getTransportador().getCnpj().substring(8,12) + "-" + $F{nota}.getInfo().getTransporte().getTransportador().getCnpj().substring(12,14) : $F{nota}.getInfo().getTransporte().getTransportador().getCnpj()]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 					<reportElement style="dados" x="226" y="194" width="68" height="16"/>
@@ -983,56 +983,56 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_IE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getInscricaoEstadual()]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="217" width="224" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Endereco}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getEnderecoComplemento()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="432" y="217" width="26" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_UF}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getUf()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="228" y="217" width="202" height="17"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Municipio}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getTransportador().getNomeMunicipio()]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="368" y="241" width="92" height="18"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf(Double.valueOf($F{Trans_PesoB}) != null ? Double.parseDouble($F{Trans_PesoB}) : 0.00)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.valueOf($F{nota}.getInfo().getTransporte().getVolumes().getPesoBruto()) != null ? Double.parseDouble($F{nota}.getInfo().getTransporte().getVolumes().getPesoBruto()) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField pattern="###0.0000;(-###0.0000)" isBlankWhenNull="true">
 					<reportElement style="dados" x="472" y="241" width="92" height="18"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[String.valueOf($F{Trans_PesoL} != null ? Double.parseDouble($F{Trans_PesoL}) : 0.00)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[String.valueOf(Double.valueOf($F{nota}.getInfo().getTransporte().getVolumes().getPesoLiquido()) != null ? Double.parseDouble($F{nota}.getInfo().getTransporte().getVolumes().getLiquido()) : 0.00)]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="2" y="241" width="73" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Volumes}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVolumes().getQuantidadeVolumesTransportados()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="77" y="241" width="73" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Especie}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVolumes().getEspecieVolumesTransportados()]]></textFieldExpression>
 				</textField>
 				<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
 					<reportElement style="dados" x="341" y="135" width="108" height="16"/>
@@ -1053,7 +1053,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[ota}.getInfo().getTransporte().getVeiculo().getPlacaVeiculo()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVeiculo().getPlacaVeiculo()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="296" y="194" width="66" height="16"/>
@@ -1067,14 +1067,14 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Marca}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVolumes().getMarca()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="dados" x="228" y="241" width="136" height="16"/>
 					<textElement>
 						<font fontName="Courier New"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Trans_Numeracao}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{nota}.getInfo().getTransporte().getVolumes().getNumeracaoVolumesTransportados()]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement mode="Opaque" x="2" y="93" width="557" height="23"/>
@@ -1329,14 +1329,14 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<textElement>
 					<font fontName="Courier New" size="7" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Prod_Codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota}.getInfo().getItens().getProduto().getCodigo()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="226" y="0" width="35" height="12" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center">
 					<font fontName="Courier New" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Prod_NCM}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota}.getInfo().getItens().getProduto().getNcm()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="detail" positionType="Float" stretchType="RelativeToBandHeight" x="261" y="0" width="16" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1457,7 +1457,7 @@ $F{Trans_CNPJ}.substring(8,12) + "-" + $F{Trans_CNPJ}.substring(12,14) : $F{Tran
 				<textElement>
 					<font fontName="Courier New" size="7" pdfFontName="Courier" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Prod_Descricao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nota}.getInfo().getItens().getProduto().getDescricao()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
